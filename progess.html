@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进度条</title>
+    <style>
+        .jdw{
+            width: 300px;
+            height: 20px;
+            background-color: pink;
+            margin: 300px auto;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .jdn{
+
+            width: 100%;
+            height: 20px;
+            background: repeating-linear-gradient(45deg,#09ccff 0px,#09ccff 15px,#0099cc 15px,#0099cc 30px);
+            background-size: 45px 20px;
+            /*background-repeat: no-repeat;*/
+            /*background-position: 0px;*/
+            animation: xunhuan 1s linear 0s infinite normal both;
+
+        }
+
+
+        @keyframes xunhuan {
+            from{
+                background-position: 45px 0px;
+            }
+
+            to{
+                background-position: 0px 0px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="jdw">
+    <div class="jdn"></div>
+</div>
+</body>
+</html>

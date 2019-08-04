@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3动画</title>
+    <style>
+        .qiu{
+            position: relative;
+            /* transition: all 2s; */
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #000;
+            text-align: center;
+            overflow: hidden;
+            
+        }
+
+
+        .qiu:hover{
+            animation-name: rotate;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: both;
+
+        }
+
+        .qiu span{
+            display: inline-block;
+            width: 30px;
+            height: 100%;
+            background-color: #fff;
+        }
+
+        @keyframes rotate{
+            from{
+                transform: rotate(0deg);
+            }
+
+            to{
+                transform: rotate(360deg);
+            }
+        }
+
+
+/* bilibili个人中心 回到顶部按钮动效 start */
+        .bili{
+            position: relative;
+            margin-top: 120px;
+            width: 150px;
+            height: 174px;
+            background-image: url(img/rocket_top.bcc748c.png);
+            background-repeat: no-repeat;
+        }
+
+        .bili:hover{
+            background-image: url(img/rocket_frame.f7563b8.png);
+            animation-name:rocket;
+            animation-duration: 1s;
+            animation-timing-function: steps(1,start); 
+            /*step(x,start|end) x代表帧与帧之间的的转化由几步完成，0%-25%之间1步(直接到25)，2步(0,12.5,25)
+            https://www.cnblogs.com/liulangmao/p/4839012.html 掘金-老zhao
+            这就解释了steps的第二个参数startend的作用,它定义了动画开始的状态,比如这里10s,那么从0%到50%间隔是5s,而改变只需要一瞬间,那么到底是在5s的开始改变,还是在5s的结束时发生改变呢? 这就需要第二个参数去决定.
+            如果是start,就是在开始的时候改变,如果是end,就是在结束的时候改变.
+            */
+            animation-iteration-count: infinite;
+
+        }
+
+        @keyframes rocket {
+            0% {
+                background-position: 0 0;
+            }
+            25% {
+                background-position: -150px 0;
+            }
+            50% {
+                background-position: -300px 0;
+            }
+            75% {
+                background-position: -450px 0;
+            }
+            100% {
+                background-position: -600px 0;
+            }
+        }
+        
+        
+/* bilibili个人中心 回到顶部按钮动效 end */
+        /* 
+            
+            animation-duration 动画完成一个周期所需要的时间，单位s或ms
+            animation-timing-function 指定动画的计时函数，即动画的速度曲线
+            animation-delay 动画开始的延迟时间
+            animation-iteration-count 动画的播放次数 默认1次
+            animation-direction 制定动画播放的方向
+            animation-fill-mode 动画的填充模式,动画开始前与结束后处于什么状态(forwards:动画结束后元素保持最后一帧，backwords:有动画延迟时
+                动画状态保持为第一帧，both:上述两者都有)
+            animation-paly-state 动画的播放状态
+            animation-name 关键帧动画名
+         */
+
+
+/* 输入框下划线从左进右出 start */
+         .input{
+             margin-top: 50px;
+             position: relative;
+             /* width: 100px; */
+             display:inline-block;
+             
+         }
+
+         .input input{
+             border: none;
+             outline: none;
+             background: #fafafa;
+             height: 30px;
+         }
+
+         .input input ~ span{
+             position: absolute;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             height: 1px;
+             width: 100%;
+             background-color: pink;
+             transform: scaleX(0);
+             transform-origin: right center;
+             transition: transform 0.3s ease-in-out;
+         }
+         .input input:focus ~ span{
+            transform: scaleX(1);
+            transform-origin: left center;
+         }
+
+         
+/* 输入框下划线从左进右出 end */
+
+
+/* 按钮果冻特效 start */
+         .jelly{
+             margin-top: 50px;
+
+         }
+
+         .jelly button{
+             z-index: 1;
+             color: white;
+             width: 100px;
+             height: 50px;
+             background-color: pink;
+             border-radius: 10px;
+             outline: none;
+             border: none;
+             padding: 0.5em 1em;
+         }
+
+         .jelly button:hover{
+             cursor: pointer;
+             animation: jelly 0.5s;
+         }
+
+         @keyframes jelly{
+             0%,100%{
+                 transform: scale(1,1);
+             }
+
+             25%,75%{
+                 transform: scale(0.9,1.1);
+             }
+             50%{
+                 transform: scale(1.1,0.9);
+             }
+         }
+/* 按钮果冻特效 end */
+
+
+/* 按钮脉冲特效 start*/
+
+         .pulse{
+            margin-top: 50px;
+         }
+
+         .pulse button{
+             position: relative;
+             z-index: 1;
+             color: white;
+             width: 100px;
+             height: 50px;
+             background-color: skyblue;
+             outline: none;
+             border: none;
+             padding: 0.5em 1em;
+         }
+
+         .pulse button:hover{
+             cursor: pointer;
+         }
+
+         .pulse button::before{
+             content: '';
+             position: absolute;
+             z-index: -1;
+             top: 0;
+             left: 0;
+             bottom: 0;
+             right: 0;
+             border: 4px solid skyblue;
+             transform: scale(1);
+             transform-origin: center;
+         }
+
+         .pulse button:hover::before{
+             transition: all 0.75s ease-out;
+             border: 1px solid skyblue;
+             transform: scale(1.25);
+             opacity: 0;
+         }
+
+/*  */
+
+
+    </style>
+</head>
+<body>
+    <div class="qiu">
+        <span></span>
+    </div>
+
+    <div class="bili">
+        
+    </div>
+
+    <div class="input">
+        <input type="text" placeholder="请输入">
+        <span></span>
+    </div>
+
+    <div class="jelly">
+        <button></button>
+    </div>
+
+    <div class="pulse">
+        <button></button>
+    </div>
+</body>
+</html>
